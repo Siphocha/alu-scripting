@@ -1,2 +1,2 @@
 #!/usr/bin/env ruby
-^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$
+puts ARGV[0].scan(/^[0-9]{10}$/).join

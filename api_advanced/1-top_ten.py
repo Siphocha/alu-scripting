@@ -1,4 +1,4 @@
-
+#!/usr/bin/python3
 """API queries post for top 10 posts on subreddit"""
 import requests
 

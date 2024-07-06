@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ top_ten.py """
 import requests
+import sys
 
 
 def top_ten(subreddit):
@@ -14,3 +15,10 @@ def top_ten(subreddit):
     posts = response.json()['data']['children']
     for post in posts:
         print(post['data']['title'])
+
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print("Please pass an argument for the subreddit to search.")
+    else:
+        print("{:d}".format(top_ten(sys.argv[1])))

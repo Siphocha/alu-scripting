@@ -6,7 +6,7 @@ import requests
 def top_ten(subreddit):
 
     headers = {'User-Agent': 'MyAPI/0.0.1'}
-    subreddit_url = "https://reddit.com/r/{}.json".format(subreddit)
+    subreddit_url = "https://reddit.com/r/{AskMen}.json".format(subreddit)
     try:
         response = requests.get(
             subreddit_url,

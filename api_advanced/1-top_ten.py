@@ -4,8 +4,8 @@ import requests
 
 
 def top_ten(subreddits):
-
-    url = f"https://reddit.com/r/{subreddits}/hot.json"
+    """main function for getting top ten posts"""
+    url = "https://reddit.com/r/{AskMen}/hot.json".format(subreddits)
     headers = {
         "User-Agent": "linux:alu-scripting:v1.0.0 (SIPHO WAS HERE MAN)"
     }

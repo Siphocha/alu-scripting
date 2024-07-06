@@ -6,7 +6,7 @@ import requests
 def num_of_subs(subreddits):
     """goes through reddit API to find subs in given subreddit"""
 
-    url = "https://reddit.com/r/{AskMen}/hot.json".format(subreddits)
+    url = "https://reddit.com/r/{}/hot.json".format(subreddits)
     headers = {
         "User-Agent": "linux:alu-scripting:v1.0.0 (SIPHO WAS HERE MAN)"
     }

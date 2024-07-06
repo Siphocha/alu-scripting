@@ -1,25 +1,32 @@
 #!/usr/bin/python3
-"""API queries post for top 10 posts on subreddit"""
+""" Get the titles of the first 10 hot posts for a given subreddit."""
 import requests
 
 
-def top_ten(subreddits):
+def top_ten(subreddit):
 
-    url = f"https://www.reddit.com/r/AskMen/comments/13c6t9s/what_is_a_gym_bro/about.json"
-    headers = {
-        "User-Agent": "linux:alu-scripting:v1.0.0 (SIPHO WAS HERE MAN)"
-    }
-
+    headers = {'User-Agent': 'MyAPI/0.0.1'}
+    subreddit_url = "https://reddit.com/r/{}.json".format(subreddit)
     try:
-        response = requests.get(url, headers=headers, redirects=False)
-        if response.status_code == 200:
-            data = response.json()
-            posts = data["data"]["children"]
-            for post in posts:
-                print(post["data"]["title"])
-            else:
-                print(None)
+        response = requests.get(
+            subreddit_url,
+            headers=headers,
+            allow_redirects=False)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(None)
+        return
 
-    # Error exception handling if nothing found
-    except Exception:
+    if response.status_code == 200:
+        try:
+            json_data = response.json()
+            posts = json_data.get('data').get('children', [])
+            if not posts:
+                print(None)
+                return
+            for post in posts[:10]:
+                print(post.get('data', {}).get('title'))
+        except (ValueError, KeyError):
+            print(None)
+    else:
         print(None)
